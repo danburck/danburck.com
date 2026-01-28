@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Mastery for Founders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'EB Garamond', serif;
+            font-weight: 400;
+            background-color: #F5F0E6;
+            color: #161616;
+            line-height: 1.7;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, #F5F0E6 0%, rgba(245, 240, 230, 0.95) 80%, rgba(245, 240, 230, 0) 100%);
+            padding: 10px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-logo {
+            width: 35px;
+            height: 35px;
+        }
+
+        .nav-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-title {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .nav-cta {
+            text-decoration: none;
+            color: #161616;
+            font-size: 18px;
+            font-style: italic;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+            transition: border-color 0.15s, opacity 0.15s;
+        }
+
+        .nav-cta:hover {
+            border-bottom-color: #D9D9D9;
+            opacity: 0.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 80px;
+        }
+
+        .container.no-bottom-padding {
+            padding-bottom: 0;
+        }
+
+        .section {
+            margin: 0;
+        }
+
+        .section-alt {
+            background-color: #EDE8E0;
+            padding: 60px 80px;
+            margin: 0;
+        }
+
+        .section-dark {
+            background-color: #E3DCCE;
+            padding: 60px 80px;
+            margin: 0;
+        }
+
+        .section-light {
+            background-color: #F8F5F0;
+            padding: 60px 80px;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 100px;
+            margin-top: 220px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h2.italic-large {
+            font-style: italic;
+            font-size: 40px;
+            margin-top: 100px;
+        }
+
+        h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 40px 0 30px 0;
+        }
+
+        p {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .intro-text {
+            font-size: 28px;
+            margin: 40px 0;
+            font-style: italic;
+        }
+
+        ul {
+            list-style: none;
+            margin: 40px 0;
+        }
+
+        li {
+            font-size: 28px;
+            margin-bottom: 30px;
+            padding-left: 40px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 32px;
+        }
+
+        li.check:before {
+            content: "✓";
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        ol {
+            margin: 40px auto;
+            padding-left: 0;
+            list-style-position: inside;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        ol li {
+            font-size: 28px;
+            margin-bottom: 25px;
+            padding-left: 0;
+            line-height: 1.6;
+        }
+
+        ol li:before {
+            content: none;
+        }
+
+        .cta {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background-color: #D9D9D9;
+            color: #161616;
+            text-decoration: none;
+            font-size: 20px;
+            font-style: italic;
+            margin: 10px;
+            border-radius: 3.76px;
+            transition: opacity 0.3s;
+        }
+
+        .cta-button:hover {
+            opacity: 0.8;
+        }
+
+        .cta-button-secondary {
+            display: inline-block;
+            padding: 18px 45px;
+            background-color: transparent;
+            color: #161616;
+            text-decoration: none;
+            font-size: 20px;
+            margin: 10px;
+            border: none;
+            border-bottom: 2px solid #D9D9D9;
+            border-radius: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cta-button-secondary:hover {
+            opacity: 0.8;
+        }
+
+        .cta-text {
+            font-size: 28px;
+            margin-top: 20px;
+        }
+
+        .cta-text a {
+            color: #415E9D;
+            text-decoration: none;
+            transition: text-decoration 0.3s;
+        }
+
+        .cta-text a:hover {
+            text-decoration: underline;
+        }
+
+        .letter {
+            font-size: 40px;
+            line-height: 1.8;
+            text-align: center;
+            margin: 60px auto;
+            max-width: 700px;
+        }
+
+        .letter p:first-child {
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        .signature {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .signature-image {
+            max-width: 200px;
+            margin: 20px auto;
+        }
+
+        .bio-container {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .bio-text {
+            flex: 1;
+        }
+
+        .photo {
+            width: 350px;
+            height: 350px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            overflow: hidden;
+            position: sticky;
+            top: 100px;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .faq-container {
+            margin: 60px 0;
+        }
+
+        .faq-item {
+            margin: 30px 0;
+            border-bottom: 1px solid rgba(22, 22, 22, 0.1);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 600;
+            padding: 25px 0;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-toggle {
+            font-size: 32px;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            font-size: 28px;
+            text-align: left;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 800px;
+            padding-bottom: 25px;
+        }
+
+        .program-phases-container {
+            display: flex;
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .program-phase {
+            flex: 1;
+            padding: 40px 30px;
+            background-color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .phase-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .phase-description {
+            font-size: 22px;
+            line-height: 1.5;
+        }
+
+        .spacer-small {
+            height: 40px;
+        }
+
+        .spacer {
+            height: 60px;
+        }
+
+        .logo-center {
+            width: 120px;
+            height: 120px;
+            margin: 80px auto 60px auto;
+        }
+
+        .logo-center img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-small {
+            width: 35px;
+            height: 35px;
+        }
+
+        .logo-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .program-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            scroll-margin-top: 80px;
+        }
+
+        .program-title {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background-color: rgba(22, 22, 22, 0.2);
+            margin: 60px auto;
+        }
+
+        .divider.hidden {
+            display: none;
+        }
+
+        .problem-box {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 60px 50px 40px 50px;
+            margin: 50px 0;
+            border: 3px solid #D9D9D9;
+            text-align: center;
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .problem-box-header {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #D9D9D9;
+            padding: 10px 40px;
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 8px;
+        }
+
+        .problem-box p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .problem-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .callout-box {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 50px 50px 50px 50px;
+            margin: 50px 0;
+            border: 3px solid #D9D9D9;
+            text-align: center;
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .callout-box p {
+            margin-bottom: 0;
+        }
+
+        .statement-section {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 60px 80px;
+            margin: 0;
+        }
+
+        .statement-section h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .statement-logo {
+            width: 216px;
+            height: 216px;
+            margin: 0 auto;
+            transition: transform 0.3s ease-out;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .statement-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-hint {
+            text-align: center;
+            font-size: 16px;
+            color: rgba(22, 22, 22, 0.5);
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        .logo-center {
+            width: 216px;
+            height: 216px;
+            margin: 80px auto 60px auto;
+            transition: transform 0.1s ease-out;
+        }
+
+        .result-grid {
+            background-color: rgba(255, 255, 255, 0.4);
+            padding: 50px 60px;
+            margin: 60px 0;
+            border-radius: 8px;
+        }
+
+        .result-grid ul {
+            margin: 0;
+        }
+
+        .result-grid .cta {
+            margin: 0;
+        }
+
+        footer {
+            padding: 0 80px;
+            color: rgba(22, 22, 22, 0.6);
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px auto;
+            transition: transform 0.3s ease-out;
+            cursor: pointer;
+        }
+
+        .footer-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-text {
+            font-size: 16px;
+            color: rgba(22, 22, 22, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .top-nav {
+                padding: 10px 20px;
+            }
+
+            .nav-title {
+                font-size: 14px;
+            }
+
+            .nav-logo {
+                width: 25px;
+                height: 25px;
+            }
+
+            .nav-cta {
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 28px;
+                margin-top: 140px;
+                margin-bottom: 60px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            h2.italic-large {
+                font-size: 28px;
+            }
+
+            h3 {
+                font-size: 24px;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .section-alt, .section-light, .section-dark {
+                padding: 40px 20px;
+            }
+
+            .statement-section {
+                padding: 40px 20px;
+            }
+
+            .statement-logo {
+                width: 160px;
+                height: 160px;
+            }
+
+            .logo-center {
+                width: 160px;
+                height: 160px;
+                margin: 50px auto 40px auto;
+            }
+
+            .footer-logo {
+                width: 200px;
+                height: 200px;
+            }
+
+            .program-phases-container {
+                flex-direction: column;
+            }
+
+            .bio-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .photo {
+                width: 280px;
+                height: 280px;
+                order: -1;
+                margin-bottom: 40px;
+                position: static;
+            }
+
+            p, li, ol li {
+                font-size: 20px;
+            }
+
+            .letter {
+                font-size: 28px;
+            }
+
+            .cta-button, .cta-button-secondary {
+                font-size: 18px;
+                padding: 15px 35px;
+            }
+
+            .problem-box, .callout-box {
+                padding: 40px 25px 30px 25px;
+            }
+
+            .problem-box-header {
+                font-size: 18px;
+                padding: 8px 25px;
+            }
+
+            .result-grid {
+                padding: 40px 30px;
+            }
+
+            .faq-question, .faq-answer {
+                font-size: 20px;
+            }
+
+            .footer-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav" id="topNav">
+        <a href="#" class="nav-left" style="text-decoration: none; color: inherit; cursor: pointer;">
+            <div class="nav-logo"><img src="/logo-blur.png" alt="Energy Mastery Logo"></div>
+            <div class="nav-title">Energy Mastery for Founders</div>
+        </a>
+        <a href="/booking" class="nav-cta">→ Book a conversation</a>
+    </nav>
+
+    <div class="container">
+        <!-- Top Fold (NO LOGO) -->
+        <h1>The focused founder has more time than the busy one.</h1>
+
+        <p>Learn to gain back hours in your week -<br>even when your energy is low.</p>
+
+        <div class="cta">
+            <a href="/booking" class="cta-button">→ Book a conversation</a>
+            <a href="#program" class="cta-button-secondary">See how it works ↓</a>
+        </div>
+
+        <div class="spacer"></div>
+    </div>
+
+    <!-- Statement Section -->
+    <div class="statement-section">
+        <h2 class="italic-large">You're not short on ambition. You're short on clarity about where your energy actually goes.</h2>
+        <div class="statement-logo"><img src="/logo-blur-grey.png" alt="Energy Mastery Logo"></div>
+        <p class="logo-hint">Try to catch your energy with the cursor</p>
+    </div>
+
+    <!-- Problem Expansion -->
+    <div class="section-light">
+        <div class="container" style="padding: 0;">
+            <p style="margin-top: 50px;">You're a founder running +7 figure business who lacks the time to juggle everything.</p>
+
+            <div class="problem-box">
+                <div class="problem-box-header">Your Problem</div>
+                <p>You keep running into an energy hole and spent time on low leverage tasks.</p>
+            </div>
+
+            <p>All you've realized over the years is this: You're stuck in the same loops of procrastination, poor delegation and implicit ownership. You could always work more, but don't know how!</p>
+        </div>
+    </div>
+
+    <div class="section-alt">
+        <div class="container" style="padding: 0;">
+            <h3 style="text-align: center; font-weight: 600;">Do you know this situation?</h3>
+
+            <ul>
+                <li>You're chasing every opportunity and lack clarity on what truly deserves your attention. You say yes to things you know you shouldn't.</li>
+                <li>You're solving problems that aren't yours. And your responsibilities are silently growing, because you are not tracking boundaries or delegating effectively.</li>
+                <li>You push through your week with grit, running mental loops about what else you should be doing and decide to make up for it on the weekend.</li>
+                <li>Your energy runs low. You stop showing up as your best self in your relationships, at workout and lastly at work. Your team feels it. Your decision-making feels heavy. The business is growing, but you're becoming the bottleneck...</li>
+            </ul>
+
+            <div class="callout-box">
+                <p><strong>Your discipline is honorable, but something has to change.</strong></p>
+            </div>
+
+            <p>You think you need more time. But what if the problem isn't the hours in your day? Shift your first principle from <em>time</em> to <em>energy</em>, and learn to invest your energy in what truly moves your business forward. This is Energy Mastery. And I'm here to guide you through it.</p>
+        </div>
+    </div>
+
+    <!-- Promise Section Part 1 - with Logo -->
+    <div class="container" id="promise-container">
+        <div class="logo-center" id="yellow-logo"><img src="/logo-blur.png" alt="Energy Mastery Logo"></div>
+
+        <h2 id="how-it-works">The focused founder has more time than the busy one…</h2>
+    </div>
+
+    <!-- Promise Section Part 2 - Results -->
+    <div class="section-alt">
+        <div class="container" style="padding: 0;">
+            <h2 style="margin-top: 0;">…because they've started:</h2>
+
+            <ol>
+                <li>Following a system for clarity, not chasing every opportunity</li>
+                <li>Tracking their boundaries, not letting responsibilities silently grow</li>
+                <li>Managing their energy, not pushing through on willpower alone</li>
+            </ol>
+
+            <div class="result-grid">
+                <ul style="margin: 40px 0;">
+                    <li class="check">You'll stop being the bottleneck in your own company</li>
+                    <li class="check">In twelve weeks, you'll know exactly what deserves your attention and have the inner quiet to ignore everything else</li>
+                    <li class="check">Most founders add this back as 10-15 hours a week. What would you do with that?</li>
+                </ul>
+                <div class="cta">
+                    <a href="/booking" class="cta-button">→ I'm ready for this</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Program Section -->
+    <div class="container">
+            <div class="program-header" id="program">
+                <div class="logo-small"><img src="/logo-blur.png" alt="Energy Mastery Logo"></div>
+                <div class="program-title">Energy Mastery for Founders</div>
+            </div>
+            <h2>The 12-week Energy Mastery program for +7 figure founders who are tired of being the bottleneck.</h2>
+
+            <p>With my proven system and 1-on-1 guidance, you'll learn to track, rewire and deploy your energy toward what matters most - even when your energy is low.</p>
+
+            <div class="program-phases-container">
+                <div class="program-phase">
+                    <div class="phase-title">I - Track</div>
+                    <p class="phase-description">Energy audits to detect what's holding you back and where you're leaking energy</p>
+                </div>
+
+                <div class="program-phase">
+                    <div class="phase-title">II - Rewire</div>
+                    <p class="phase-description">Work through limiting loops, procrastination patterns, and unclear boundaries</p>
+                </div>
+
+                <div class="program-phase">
+                    <div class="phase-title">III - Deploy</div>
+                    <p class="phase-description">Build your mission-critical focus system with execution rituals you can follow when energy is low</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 50px;"><strong>Between sessions</strong> you'll get personalized worksheets and templates, plus weekly accountability to implement what we build together.</p>
+
+            <div class="callout-box" style="margin-top: 50px;">
+                <p>I combine my experience as an executive in high-pressure business environments with consciousness practices to give you a system you can follow without me. You'll walk away with clarity on where your energy goes and a personalized focus system you can rely on forever.</p>
+            </div>
+
+            <div class="cta">
+                <a href="/booking" class="cta-button">→ Book a discovery call</a>
+            </div>
+    </div>
+
+    <!-- Letter Section -->
+    <div class="section-dark" style="margin-top: 0;">
+        <div class="container" style="padding: 0;">
+            <div class="letter">
+                <p>Dear Founder,</p>
+                <p>I was once like you<br>always in my mind.</p>
+                <p>So I started to practice change<br>to get to know my energy<br>and deploy it towards what matter most.</p>
+                <p>I started to work less and achieve more.</p>
+                <p>Now I guide others to do the same.</p>
+                <p>And just like you<br>I practice too.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bio Section -->
+    <div class="container">
+        <h3 style="text-align: center; font-size: 32px; margin-bottom: 50px;">Hi, I'm Daniel.</h3>
+
+        <div class="bio-container">
+            <div class="bio-text">
+                <p style="text-align: left;">As an executive, I isolated problems in high pressure business environments. As a guide, I identify them in founders.</p>
+
+                <p style="text-align: left;">I spent years as a Chief Product Officer in tech startups, always working, constantly running mental loops. I tried every productivity system. None worked, because they assumed I had endless energy.</p>
+
+                <p style="text-align: left;">So I started studying energy differently, combining business strategy with consciousness practices. I learned to track, rewire and deploy my energy toward what truly mattered.</p>
+
+                <p style="text-align: left;">The result? I started working less and achieving more.</p>
+
+                <p style="text-align: left;">Now I guide +7 figure founders through the same transformation.</p>
+            </div>
+
+            <div class="photo">
+                <img src="/daniel-profile.png" alt="Daniel's Photo">
+            </div>
+        </div>
+
+        <p class="intro-text" style="text-align: center; margin-top: 60px;">Not sure what happens next? Book a 15-minute discovery call - no pressure, just clarity.</p>
+
+        <div class="cta">
+            <a href="/booking" class="cta-button">→ Let's talk</a>
+        </div>
+
+        <div class="spacer"></div>
+        <div class="divider"></div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="section-light">
+        <div class="container" style="padding: 0;">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What is Energy Mastery, and how is it different from productivity coaching?</span>
+                        <span class="faq-toggle">⊕</span>
+                    </div>
+                    <div class="faq-answer">Most productivity systems assume you have endless energy and perfect clarity. Energy Mastery starts with the reality that your performance capacity isn't constant. When energy is low, you make worse decisions and work less efficiently. I teach you to track, rewire, and deploy your energy toward what matters most, even when you're depleted. You'll walk away with a system you can follow on your own.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>I'm already overwhelmed - how do I find time for this?</span>
+                        <span class="faq-toggle">⊕</span>
+                    </div>
+                    <div class="faq-answer">That's exactly the problem we solve. The program is designed for founders who feel like they have no time. Through our 8 sessions over 12 weeks, you'll gain back hours every week by eliminating low-leverage work and energy leaks. Most founders add back 10-15 hours per week.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>I don't have a team yet / I'm still freelancing - is this for me?</span>
+                        <span class="faq-toggle">⊕</span>
+                    </div>
+                    <div class="faq-answer">This program is designed for founders leading +7 figure businesses with teams, but I also work with founders launching products. The energy mastery principles work at every stage. Let's talk to see if the timing is right.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What can I expect after 12 weeks?</span>
+                        <span class="faq-toggle">⊕</span>
+                    </div>
+                    <div class="faq-answer">You'll know exactly what deserves your attention and have the inner quiet to ignore everything else. You'll stop being the bottleneck in your business. And you'll have a personalized focus system you can rely on whenever your energy runs low - even without me.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do I prepare for our first call?</span>
+                        <span class="faq-toggle">⊕</span>
+                    </div>
+                    <div class="faq-answer">Just show up as you are. The discovery call is about understanding where you're stuck right now and whether Energy Mastery is the right fit. No prep needed.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What makes your approach unique?</span>
+                        <span class="faq-toggle">⊕</span>
+                    </div>
+                    <div class="faq-answer">I combine seven years as a Chief Product Officer in high-pressure tech environments with consciousness practices. This isn't generic advice, it's a proven system built for founders who operate in high-uncertainty environments. You get both business strategy and inner work.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Push -->
+    <div class="container no-bottom-padding">
+        <div class="spacer"></div>
+
+        <h3 style="text-align: center; font-size: 32px; font-weight: 400;">You're still reading.</h3>
+
+        <p>That means something resonates. You recognize yourself in this: the mental loops, the depleted energy, the feeling of being the bottleneck in your own business.</p>
+
+        <p style="font-style: italic; font-size: 32px; margin: 40px 0;">The focused founder has more time than the busy one.</p>
+
+        <p>You can keep pushing through or you can learn to invest your energy differently.</p>
+
+        <div class="cta" id="booking">
+            <p class="cta-text"><strong>Whenever you are ready, contact me <a href="/booking">here</a>.</strong></p>
+        </div>
+
+        <div class="footer-logo" style="margin-bottom: 0; margin-top: 60px;"><img src="/logo-blur.png" alt="Energy Mastery Logo"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text"><strong>© 2026 Energy Mastery for Founders</strong><br>by Daniel Martin Burckhardt</p>
+        </div>
+    </footer>
+
+    <script>
+        // Show nav on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('topNav');
+            if (window.scrollY > 400) {
+                nav.classList.add('visible');
+            } else {
+                nav.classList.remove('visible');
+            }
+        });
+
+        // Toggle FAQ
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const wasActive = faqItem.classList.contains('active');
+
+            // Close all FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Open clicked FAQ if it wasn't active
+            if (!wasActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Grey logo escapes from cursor (uncatchable energy)
+        const greyLogo = document.querySelector('.statement-logo');
+        let greyLogoInterval;
+        let isNearGreyLogo = false;
+
+        if (greyLogo) {
+            // Random jittery movement when cursor is NOT close
+            function jitterGreyLogo() {
+                if (!isNearGreyLogo) {
+                    const randomX = (Math.random() - 0.5) * 80;
+                    const randomY = (Math.random() - 0.5) * 80;
+                    greyLogo.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                }
+            }
+
+            greyLogoInterval = setInterval(jitterGreyLogo, 500);
+
+            greyLogo.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+
+                // Calculate distance from center
+                const deltaX = centerX - mouseX;
+                const deltaY = centerY - mouseY;
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+                // If cursor is close, move away
+                if (distance < 250) {
+                    isNearGreyLogo = true;
+                    const moveDistance = 80;
+                    const angle = Math.atan2(deltaY, deltaX);
+                    const moveX = Math.cos(angle) * moveDistance;
+                    const moveY = Math.sin(angle) * moveDistance;
+
+                    this.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                } else {
+                    isNearGreyLogo = false;
+                }
+            });
+
+            greyLogo.addEventListener('mouseleave', function() {
+                isNearGreyLogo = false;
+            });
+        }
+
+        // Yellow logo follows cursor (controllable energy)
+        const promiseContainer = document.getElementById('promise-container');
+        const yellowLogo = document.getElementById('yellow-logo');
+        let yellowLogoFollowing = false;
+
+        if (promiseContainer && yellowLogo) {
+            promiseContainer.addEventListener('mouseenter', function() {
+                yellowLogoFollowing = true;
+            });
+
+            promiseContainer.addEventListener('mousemove', function(e) {
+                if (yellowLogoFollowing) {
+                    const containerRect = this.getBoundingClientRect();
+                    const logoRect = yellowLogo.getBoundingClientRect();
+
+                    // Calculate position relative to original center
+                    const originalCenterX = containerRect.left + containerRect.width / 2;
+                    const originalCenterY = logoRect.top + logoRect.height / 2;
+
+                    const offsetX = e.clientX - originalCenterX;
+                    const offsetY = e.clientY - originalCenterY;
+
+                    yellowLogo.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+                }
+            });
+
+            promiseContainer.addEventListener('mouseleave', function() {
+                yellowLogoFollowing = false;
+                // Smooth return to original position
+                yellowLogo.style.transition = 'transform 0.5s ease-out';
+                yellowLogo.style.transform = 'translate(0, 0)';
+
+                setTimeout(() => {
+                    yellowLogo.style.transition = 'transform 0.1s ease-out';
+                }, 500);
+            });
+        }
+
+        // Footer yellow logo grows on hover
+        const footerLogo = document.querySelector('.footer-logo');
+        let growInterval;
+        let currentScale = 1;
+
+        if (footerLogo) {
+            footerLogo.addEventListener('mouseenter', function() {
+                currentScale = 1;
+                growInterval = setInterval(() => {
+                    currentScale += 0.02;
+                    if (currentScale > 3) currentScale = 3; // Cap at 3x size
+                    this.style.transform = `scale(${currentScale})`;
+                }, 50);
+            });
+
+            footerLogo.addEventListener('mouseleave', function() {
+                clearInterval(growInterval);
+                currentScale = 1;
+                this.style.transform = 'scale(1)';
+            });
+        }
+    </script>
+</body>
+</html>
