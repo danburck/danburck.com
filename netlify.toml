@@ -1,11 +1,4 @@
-# Netlify configuration for Energy Mastery for Founders
-
-# Keep root redirect to letters.danburck.com (your existing setup)
-[[redirects]]
-  from = "/"
-  to = "https://letters.danburck.com"
-  status = 301
-  force = true
+# Netlify configuration for danburck.com
 
 # Clean URL redirects (remove .html extension)
 [[redirects]]
