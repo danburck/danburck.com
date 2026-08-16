@@ -1,369 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book a Conversation - Energy Mastery for Founders</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Book your Founder Energy Audit | Energy Led</title>
+<meta name="description" content="Thirty minutes, free. You leave with your energy map, the one leak costing you most, and a single ritual to run for seven days.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://danburck.com/booking">
+<meta property="og:title" content="Book your Founder Energy Audit | Energy Led">
+<meta property="og:description" content="Thirty minutes, free. You leave with your energy map, the one leak costing you most, and a single ritual to run for seven days.">
+<meta property="og:image" content="https://danburck.com/Og_image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Book your Founder Energy Audit | Energy Led">
+<meta name="twitter:description" content="Thirty minutes, free. You leave with your energy map, the one leak costing you most, and a single ritual to run for seven days.">
+<meta name="twitter:image" content="https://danburck.com/Og_image.png">
+<style>
+:root{
+  color-scheme: dark;
+  --ink:#0A0A0B; --ink-2:#0F0F11; --panel:#131316; --panel-2:#191A1D;
+  --bone:#FAF9F6; --dim:#8C8C82; --dimmer:#5E5E58;
+  --charge:#FFFB29; --hair:rgba(250,249,246,.10); --hair-soft:rgba(250,249,246,.055);
+  --display:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans:'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
+  --pad:clamp(20px,5vw,64px);
+}
+:root[data-theme="light"],:root[data-theme="dark"]{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--bone);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;font-size:17px;line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--charge);outline-offset:3px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
-        body {
-            font-family: 'EB Garamond', serif;
-            font-weight: 400;
-            background-color: #F5F0E6;
-            color: #161616;
-            line-height: 1.7;
-        }
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding-inline:var(--pad)}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5.4vw,56px);line-height:1.05;letter-spacing:-.015em}
+h2{font-size:16px;font-family:var(--sans);font-weight:500;letter-spacing:.01em}
+p{margin:0 0 1.1em}
+.eyebrow{font-family:var(--display);font-size:12px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--dim);margin:0 0 20px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dimmer)}
 
-        /* Top Navigation */
-        .top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to bottom, #F5F0E6 0%, rgba(245, 240, 230, 0.95) 80%, rgba(245, 240, 230, 0) 100%);
-            padding: 10px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
+/* nav */
+.nav{border-bottom:1px solid var(--hair-soft);background:var(--ink)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:62px}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none}
+.mark b{font-family:var(--display);font-size:15px;letter-spacing:.28em;text-transform:uppercase;font-weight:400}
+.mark i{width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:var(--charge);display:block}
+.back{font-size:13.5px;color:var(--dim);text-decoration:none}
+.back:hover{color:var(--bone)}
 
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+/* head */
+.head{padding-block:clamp(44px,7vw,76px) clamp(28px,4vw,44px)}
+.head p.lede{font-size:clamp(17px,1.9vw,20px);line-height:1.55;color:#CFCEC7;max-width:54ch;margin-top:22px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.fact{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);
+  border:1px solid var(--hair);border-radius:100px;padding:7px 14px}
+.fact.hot{color:#0A0A0B;background:var(--charge);border-color:var(--charge)}
 
-        .nav-logo {
-            width: 35px;
-            height: 35px;
-        }
+/* layout */
+.grid{display:grid;gap:clamp(28px,4vw,44px);padding-bottom:clamp(60px,8vw,100px)}
+@media(min-width:920px){.grid{grid-template-columns:minmax(0,1fr) 452px;align-items:start}}
 
-        .nav-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+/* scheduler */
+/* Calendly's iframe renders on a white ground and ignores the colour params on this
+   plan, so the scheduler is a deliberate light card: the one lit surface on a dark page. */
+.sched{border-radius:10px;background:var(--bone);overflow:hidden;
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.85)}
+@media(max-width:919px){.sched{order:-1}}
+.sched-h{padding:20px 24px 18px;border-bottom:1px solid rgba(10,10,11,.12);background:var(--bone)}
+.sched-h h2{margin-bottom:6px;font-family:var(--display);font-size:21px;font-weight:400;color:#0A0A0B}
+.sched-h .mono{display:block;color:rgba(10,10,11,.52)}
+.sched-b{padding:0;background:#fff}
+.calendly-inline-widget{width:100%;display:block}
+/* Drop the Calendly inline embed into #scheduler-slot when hosting this on danburck.com.
+   See the block marked CALENDLY EMBED at the bottom of this file. */
+#scheduler-slot{min-height:210px;border-radius:8px;margin:24px;background:#fff;
+  display:grid;place-items:center;text-align:center;padding:26px 20px;gap:14px}
+#scheduler-slot[hidden]{display:none}
+#scheduler-slot .mono{color:rgba(10,10,11,.52)}
+#scheduler-slot .cal{display:flex;gap:5px;margin-bottom:2px}
+#scheduler-slot .cal i{width:11px;height:11px;border-radius:2px;background:rgba(10,10,11,.14);display:block}
+#scheduler-slot .cal i:nth-child(2),#scheduler-slot .cal i:nth-child(5){background:var(--charge)}
+#scheduler-slot .btn-primary{background:#0A0A0B;color:var(--charge);border-color:#0A0A0B}
+#scheduler-slot .btn-primary:hover{background:#1C1C1C}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--sans);
+  font-size:15px;font-weight:500;padding:15px 24px;border-radius:6px;text-decoration:none;
+  border:1px solid transparent;cursor:pointer;transition:transform .18s ease,background .18s ease,border-color .18s ease}
+.btn-primary{background:var(--charge);color:#0A0A0B;border-color:var(--charge);width:100%}
+.btn-primary:hover{transform:translateY(-2px);background:#FFFD6B}
+.btn .arw{transition:transform .18s ease}
+.btn:hover .arw{transform:translateX(3px)}
+.sched-f{padding:18px 24px 20px;font-size:13px;color:rgba(10,10,11,.58);line-height:1.55;
+  background:var(--bone);border-top:1px solid rgba(10,10,11,.10);margin:0}
+.sched-f a{color:#0A0A0B}
 
-        .nav-title {
-            font-weight: 700;
-            font-size: 18px;
-        }
+/* left column blocks */
+.block{border-top:1px solid var(--hair);padding-top:26px;margin-top:26px}
+.block:first-child{border-top:0;padding-top:0;margin-top:0}
+.block h2{margin-bottom:18px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:16px;counter-increment:s}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:11.5px;
+  color:var(--charge);padding-top:4px}
+.steps b{grid-column:2;font-family:var(--display);font-size:19px;font-weight:400;margin-bottom:5px}
+.steps span{grid-column:2;font-size:15px;color:var(--dim);line-height:1.55}
+.bring{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.bring li{display:flex;gap:13px;font-size:15.5px;color:var(--dim);line-height:1.55}
+.bring li .g{flex:0 0 14px;font-family:var(--mono);font-size:13px;color:var(--charge);line-height:1.55}
+.bring li b{color:var(--bone);font-weight:500}
+.after{font-size:15.5px;color:var(--dim);max-width:56ch}
+.after b{color:var(--bone);font-weight:500}
 
-        .nav-back {
-            text-decoration: none;
-            color: #161616;
-            font-size: 18px;
-            font-style: italic;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 2px;
-            transition: border-color 0.15s, opacity 0.15s;
-        }
+.quote{background:var(--charge);color:#141400;border-radius:8px;padding:26px 26px 22px;margin-top:30px}
+.quote blockquote{margin:0 0 16px;font-family:var(--display);font-size:18px;line-height:1.45}
+.quote cite{font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(20,20,0,.62)}
 
-        .nav-back:hover {
-            border-bottom-color: #D9D9D9;
-            opacity: 0.7;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 100px 80px 60px 80px;
-        }
-
-        .hero-section {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .duration {
-            font-size: 18px;
-            color: rgba(22, 22, 22, 0.7);
-            margin-bottom: 15px;
-        }
-
-        h1 {
-            font-size: 40px;
-            font-weight: 400;
-            line-height: 1.3;
-            margin-bottom: 20px;
-        }
-
-        .subtitle {
-            font-size: 24px;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            color: #161616;
-        }
-
-        .content-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: flex-start;
-            margin: 40px 0;
-        }
-
-        .photo-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .photo {
-            width: 100%;
-            max-width: 380px;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-
-        .photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .text-content {
-            width: 100%;
-        }
-
-        h2 {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        p {
-            font-size: 22px;
-            margin-bottom: 18px;
-            line-height: 1.5;
-        }
-
-        .steps-list {
-            list-style: none;
-            margin: 25px 0;
-        }
-
-        .steps-list li {
-            font-size: 22px;
-            margin-bottom: 20px;
-            padding-left: 40px;
-            position: relative;
-            line-height: 1.5;
-        }
-
-        .steps-list li:before {
-            content: attr(data-number);
-            position: absolute;
-            left: 0;
-            font-weight: 700;
-            color: #161616;
-        }
-
-        .cta-section {
-            text-align: center;
-            margin: 50px 0 40px 0;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 18px 50px;
-            background-color: #D9D9D9;
-            color: #161616;
-            text-decoration: none;
-            font-size: 22px;
-            font-style: italic;
-            border-radius: 3.76px;
-            transition: opacity 0.3s;
-            margin: 10px 0;
-        }
-
-        .cta-button:hover {
-            opacity: 0.8;
-        }
-
-        .contact-info {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(22, 22, 22, 0.1);
-        }
-
-        .contact-info h3 {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .contact-info p {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-
-        .contact-info a {
-            color: #415E9D;
-            text-decoration: none;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .top-nav {
-                padding: 10px 20px;
-            }
-
-            .nav-logo {
-                width: 25px;
-                height: 25px;
-            }
-
-            .nav-title {
-                font-size: 14px;
-            }
-
-            .nav-back {
-                font-size: 14px;
-            }
-
-            .container {
-                padding: 80px 20px 40px 20px;
-            }
-
-            .duration {
-                font-size: 16px;
-                margin-bottom: 10px;
-            }
-
-            h1 {
-                font-size: 28px;
-                margin-bottom: 15px;
-            }
-
-            .subtitle {
-                font-size: 18px;
-                margin-bottom: 30px;
-            }
-
-            .content-section {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                margin: 30px 0;
-            }
-
-            .photo {
-                max-width: 280px;
-            }
-
-            h2 {
-                font-size: 24px;
-                margin-bottom: 15px;
-            }
-
-            p {
-                font-size: 18px;
-                margin-bottom: 15px;
-            }
-
-            .steps-list {
-                margin: 20px 0;
-            }
-
-            .steps-list li {
-                font-size: 18px;
-                margin-bottom: 15px;
-                padding-left: 30px;
-            }
-
-            .cta-section {
-                margin: 35px 0 30px 0;
-            }
-
-            .cta-button {
-                padding: 14px 35px;
-                font-size: 18px;
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .contact-info {
-                margin-top: 30px;
-                padding-top: 25px;
-            }
-
-            .contact-info h3 {
-                font-size: 20px;
-                margin-bottom: 12px;
-            }
-
-            .contact-info p {
-                font-size: 18px;
-            }
-        }
-    </style>
+.tail{border-top:1px solid var(--hair);padding-block:34px 44px;font-size:15px;color:var(--dim);max-width:58ch}
+.tail b{color:var(--bone);font-weight:500}
+.tail a{color:var(--charge)}
+footer{border-top:1px solid var(--hair);padding-block:30px}
+.f-in{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-family:var(--mono);
+  font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dimmer)}
+</style>
 </head>
 <body>
-    <!-- Top Navigation -->
-    <nav class="top-nav">
-        <a href="/energymasteryforfounders" class="nav-left" style="text-decoration: none; color: inherit; cursor: pointer;">
-            <div class="nav-logo"><img src="/logo-blur.png" alt="Energy Mastery Logo"></div>
-            <div class="nav-title">Energy Mastery for Founders</div>
-        </a>
-        <a href="/energymasteryforfounders" class="nav-back">← Back</a>
-    </nav>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="mark" href="/energyled"><i aria-hidden="true"></i><b>Energy&nbsp;Led</b></a>
+    <a class="back" href="/energyled">&larr; Back to the program</a>
+  </div>
+</nav>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="hero-section">
-            <p class="duration">⏱ Takes only 15 minutes</p>
-            <h1>Book Your Discovery Call</h1>
-            <p class="subtitle">Let's talk about where you're stuck and whether Energy Mastery can help.</p>
-        </div>
+<header class="wrap head">
+  <p class="eyebrow">Founder Energy Audit</p>
+  <h1>Pick a time.<br>Thirty minutes.</h1>
+  <p class="lede">Free, and complete on its own. No deck, no pitch. You leave with your energy map,
+  the one leak costing you most, and a single ritual to run for seven days.</p>
+  <div class="facts">
+    <span class="fact hot">Free</span>
+    <span class="fact">30 minutes</span>
+    <span class="fact">Video call</span>
+    <span class="fact">No card, no prep needed</span>
+  </div>
+</header>
 
-        <!-- Content Section -->
-        <div class="content-section">
-            <div class="photo-container">
-                <div class="photo">
-                    <img src="/daniel-booking-portrait.webp" alt="Daniel's Photo">
-                </div>
-            </div>
+<div class="wrap grid">
 
-            <div class="text-content">
-                <h2>Become the founder who knows how to shift their energy.</h2>
-                <p>This is a free 15-minute conversation - no pressure, no pitch. Just clarity on whether this program is right for you.</p>
-
-                <p><strong>Here's what happens when you book:</strong></p>
-
-                <ul class="steps-list">
-                    <li data-number="1.">15-minute discovery call to see if Energy Mastery is right for you.</li>
-                    <li data-number="2.">If it's a fit, we start with your first energy audit session and analyze what's holding you back in your business.</li>
-                    <li data-number="3.">We work together closely for 12 weeks so that you become the founder who knows how to shift their energy.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- CTA Section -->
-        <div class="cta-section">
-            <a href="https://calendly.com/danielmartinburckhardt/discovery-call" class="cta-button" target="_blank" rel="noopener noreferrer">→ Choose a time</a>
-        </div>
-
-        <!-- Contact Info -->
-        <div class="contact-info">
-            <h3>Questions before booking?</h3>
-            <p><a href="mailto:daniel.m.burckhardt@gmail.com">Email me</a></p>
-        </div>
+  <div>
+    <div class="block">
+      <h2>What we'll do</h2>
+      <ol class="steps">
+        <li><b>Your energy map</b><span>We walk your last two weeks and mark what charged you and what
+        drained you. Most founders find the pattern inside ten minutes.</span></li>
+        <li><b>The leak that costs most</b><span>One loop is taking more from you than the rest combined.
+        We name it precisely, in your words.</span></li>
+        <li><b>One ritual, seven days</b><span>You leave with a single practice sized so small you can run
+        it on your worst day. Yours whether or not we ever speak again.</span></li>
+      </ol>
     </div>
+
+    <div class="block">
+      <h2>Two things that make it sharper</h2>
+      <p class="after" style="margin-bottom:18px">Neither is homework. Come as you are if you'd rather.</p>
+      <ul class="bring">
+        <li><span class="g">&#43;</span><span><b>Your calendar, open.</b> The last two weeks, not the next
+        two. We're reading evidence, not plans.</span></li>
+        <li><span class="g">&#43;</span><span><b>One decision you'd make differently today.</b> Not a
+        disaster. Just one you can feel was made on the wrong charge.</span></li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h2>After you book</h2>
+      <p class="after">You'll get a calendar invite with the video link, and one short question by email a
+      day before. Answering it takes two minutes and makes the call sharper. <b>If you need to move it,
+      reschedule from the invite.</b> No hard feelings and no follow-up chasing.</p>
+    </div>
+
+    <div class="quote">
+      <blockquote>His questions found the things I was avoiding. His structure turned vague items into
+      concrete tasks. And he cut through my own narratives every time I got comfortable with one. That
+      accountability changed how I work.</blockquote>
+      <cite>Onur, AI and Crypto Founder</cite>
+    </div>
+  </div>
+
+  <aside class="sched">
+    <!-- Calendly's own event details are hidden (hide_event_type_details=1),
+         so this header supplies the event name and duration. -->
+    <div class="sched-h">
+      <h2>Choose a time</h2>
+      <span class="mono">Founder Energy Audit &middot; 30 min</span>
+    </div>
+    <div class="sched-b">
+      <!-- Calendly inline widget begin -->
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/danielmartinburckhardt/call?hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;utm_source=danburck&amp;utm_medium=booking_page"
+           style="min-width:320px;height:700px"></div>
+      <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      <!-- Calendly inline widget end -->
+
+      <!-- Shown only if the widget cannot load (e.g. script blocked). -->
+      <div id="scheduler-slot" hidden>
+        <span class="cal"><i></i><i></i><i></i><i></i><i></i></span>
+        <span class="mono" style="letter-spacing:.14em">Times shown in your local zone</span>
+        <a class="btn btn-primary"
+           href="https://calendly.com/danielmartinburckhardt/call?utm_source=danburck&amp;utm_medium=booking_page">
+          Open the scheduler <span class="arw">&rarr;</span></a>
+      </div>
+    </div>
+    <p class="sched-f">Booking takes about twenty seconds. If nothing on the calendar works, email
+    <a href="mailto:daniel.m.burckhardt@gmail.com">daniel.m.burckhardt@gmail.com</a> and we'll find a time.</p>
+  </aside>
+
+</div>
+
+<div class="wrap tail">
+  <p><b>Not sure it's a fit?</b> Book anyway. If it isn't, I'll say so on the call and point you somewhere
+  better. I'd rather spend thirty minutes finding that out than have you sit on the fence for a month.</p>
+</div>
+
+<footer>
+  <div class="wrap f-in">
+    <span>Energy Led &middot; Daniel Burckhardt</span>
+    <span>danburck.com</span>
+  </div>
+</footer>
+
+<script>
+/* The Calendly script is blocked by the CSP on claude.ai artifact pages, and by some
+   corporate networks and privacy extensions. If no iframe has appeared shortly after
+   load, hide the empty widget box and reveal the direct link instead, so the page is
+   never a dead end. On danburck.com the widget loads and this does nothing. */
+(function(){
+  function check(){
+    var w=document.querySelector('.calendly-inline-widget');
+    if(w && w.querySelector('iframe')) return;
+    if(w) w.style.display='none';
+    var f=document.getElementById('scheduler-slot');
+    if(f) f.hidden=false;
+  }
+  setTimeout(check,2500);
+})();
+</script>
 </body>
 </html>

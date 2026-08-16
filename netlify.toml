@@ -1,9 +1,21 @@
 # Netlify configuration for danburck.com
 
-# Clean URL redirects (remove .html extension)
+# Energy Mastery for Founders was renamed to Energy Led.
+# Keep old links working; the old page stays in the repo but is no longer served.
+[[redirects]]
+  from = "/energymasteryforfounders"
+  to = "/energyled"
+  status = 301
+
 [[redirects]]
   from = "/energymasteryforfounders.html"
-  to = "/energymasteryforfounders"
+  to = "/energyled"
+  status = 301
+
+# Clean URL redirects (remove .html extension)
+[[redirects]]
+  from = "/energyled.html"
+  to = "/energyled"
   status = 301
 
 [[redirects]]
