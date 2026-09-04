@@ -5,7 +5,9 @@ import { currentEmail, userId, logs, fail, guarded } from "../lib/auth.mjs";
 import { FRAME, lensFor } from "../lib/coaching.mjs";
 
 const MAX_CHARS = 6000;
-const DAILY_LIMIT = 12;
+// Two closes per account per day. Override with EVENING_CLOSE_DAILY_LIMIT
+// in the Netlify environment variables, no code change needed.
+const DAILY_LIMIT = Number(process.env.EVENING_CLOSE_DAILY_LIMIT) || 2;
 
 /** Closes already written today, so one account cannot run up the API bill. */
 async function todayCount(uid) {
@@ -47,7 +49,10 @@ export default guarded(async (req) => {
   }
 
   if ((await todayCount(userId(email))) >= DAILY_LIMIT) {
-    return fail("That is enough closes for one day. Come back tomorrow.", 429);
+    return fail(
+      `That is ${DAILY_LIMIT} closes today, which is the daily limit. Come back tomorrow.`,
+      429,
+    );
   }
 
   const client = new Anthropic();
