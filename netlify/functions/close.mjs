@@ -76,10 +76,35 @@ export default guarded(async (req) => {
     messages: [{ role: "user", content: userTurn }],
   });
 
+  // Says what actually went wrong, because "try again" sends you hunting in the
+  // wrong place when the real problem is the key or the bill.
+  function reason(e) {
+    const status = e && typeof e.status === "number" ? e.status : 0;
+    if (status === 401 || status === 403) {
+      return "The Anthropic key on this site was rejected. Check ANTHROPIC_API_KEY in the Netlify environment variables.";
+    }
+    if (status === 429) {
+      return "Anthropic is rate limiting this key right now. Wait a minute and press the button again.";
+    }
+    if (status === 400) {
+      return "Anthropic refused this request. If it keeps happening on the same entry, the entry itself is the problem.";
+    }
+    if (status >= 500) {
+      return "Anthropic had a problem at their end. Press the button again.";
+    }
+    return "Nothing came back on this one. Press the button again.";
+  }
+
   const encoder = new TextEncoder();
   const body = new ReadableStream({
     async start(controller) {
+      // First byte goes out before the model has said anything, so the platform
+      // sees a response immediately no matter how long the thinking takes.
+      // A leading newline is dropped by the renderer.
+      controller.enqueue(encoder.encode("\n"));
+
       let sent = 0;
+      let failure = null;
       try {
         for await (const event of stream) {
           if (
@@ -92,14 +117,11 @@ export default guarded(async (req) => {
           }
         }
       } catch (e) {
-        console.error("stream failed", e);
+        failure = e;
+        console.error("close stream failed", e);
       }
       if (sent === 0) {
-        controller.enqueue(
-          encoder.encode(
-            "## THE READ\nNothing came back on this one. Press the button again, and if it keeps happening the entry may be tripping a safety filter.",
-          ),
-        );
+        controller.enqueue(encoder.encode("## THE READ\n" + reason(failure)));
       }
       controller.close();
     },
