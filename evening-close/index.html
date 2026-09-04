@@ -90,6 +90,17 @@ p{margin:0 0 1.1em}
   line-height:1.7}
 .err{color:var(--warn);font-size:14px;line-height:1.55;margin:16px 0 0;text-align:center}
 .err:empty{display:none}
+.ok{color:var(--charge);font-size:14px;line-height:1.55;margin:16px 0 0;text-align:center}
+.ok:empty{display:none}
+.linky{background:none;border:0;padding:0;color:var(--dim);font-family:var(--sans);font-size:13px;
+  cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.linky:hover{color:var(--bone)}
+#pending h2{font-size:clamp(24px,3.6vw,32px);line-height:1.1;text-align:center;margin-bottom:14px}
+#pending .sub b{color:var(--bone);font-weight:500}
+.devlink{font-family:var(--mono);font-size:11px;line-height:1.6;color:var(--charge);word-break:break-all;
+  border:1px dashed rgba(255,251,41,.4);border-radius:6px;padding:12px 14px;margin:20px 0 0;text-align:left}
+.devlink:empty{display:none}
+.devlink a{color:inherit}
 
 /* ---------- head ---------- */
 .head{padding-top:clamp(34px,5.5vw,60px);padding-bottom:clamp(24px,4vw,38px)}
@@ -260,6 +271,7 @@ footer{border-top:1px solid var(--hair);padding-block:34px}
     <h1>Close the day before it closes you.</h1>
     <p class="sub">An end of day close for founders. Your entries stay in your account.</p>
 
+    <div id="authPanel">
     <div class="tabs" role="tablist">
       <button class="tab" type="button" id="tabIn" role="tab" aria-selected="true">Sign in</button>
       <button class="tab" type="button" id="tabUp" role="tab" aria-selected="false">Create account</button>
@@ -279,9 +291,26 @@ footer{border-top:1px solid var(--hair);padding-block:34px}
         <input type="text" id="invite" name="invite" autocomplete="off">
       </div>
       <button class="btn btn-primary" id="authGo" type="submit">Sign in <span class="arw">&rarr;</span></button>
+      <p class="ok" id="authOk"></p>
       <p class="err" id="authErr"></p>
-      <p class="note" id="authNote">At least 8 characters. Nothing is emailed to you.</p>
+      <p class="note" id="authNote">Your past closes are waiting behind this.</p>
+      <p class="note" id="unconfirmed" hidden>
+        <button class="linky" type="button" id="resendInline">Send the confirmation link again</button>
+      </p>
     </form>
+    </div>
+
+    <div id="pending" hidden>
+      <p class="eyebrow" style="text-align:center">One step left</p>
+      <h2>Check your inbox.</h2>
+      <p class="sub">We sent a confirmation link to <b id="pendingEmail"></b>. Click it and you are in.
+      The link is good for 24 hours.</p>
+      <button class="btn btn-ghost" id="resend" type="button" style="width:100%;justify-content:center">Send it again</button>
+      <p class="ok" id="pendingOk"></p>
+      <p class="err" id="pendingErr"></p>
+      <p class="devlink" id="devLink"></p>
+      <p class="note"><button class="linky" type="button" id="backToAuth">Use a different email</button></p>
+    </div>
   </div>
 </section>
 
@@ -399,7 +428,7 @@ footer{border-top:1px solid var(--hair);padding-block:34px}
     { id:"graham",    name:"Paul Graham",  role:"Founder reality",             glyph:"◊" }
   ];
 
-  var state = { mentor:"energyled", energy:0, streaming:false, entries:[], mode:"signin" };
+  var state = { mentor:"energyled", energy:0, streaming:false, entries:[], mode:"signin", pendingEmail:null };
   var ctrl = null;
   var $ = function(id){ return document.getElementById(id); };
   var DATE_FMT = { weekday:"short", day:"numeric", month:"short" };
@@ -434,27 +463,73 @@ footer{border-top:1px solid var(--hair);padding-block:34px}
     $("password").setAttribute("autocomplete", up ? "new-password" : "current-password");
     $("authGo").innerHTML = (up ? "Create account" : "Sign in") + ' <span class="arw">&rarr;</span>';
     $("authNote").textContent = up
-      ? "At least 8 characters. Nothing is emailed to you."
+      ? "At least 8 characters. We send one link to confirm the address."
       : "Your past closes are waiting behind this.";
     $("authErr").textContent = "";
+    $("unconfirmed").hidden = true;
   }
   $("tabIn").addEventListener("click", function(){ setMode("signin"); });
   $("tabUp").addEventListener("click", function(){ setMode("signup"); });
 
+  function showPending(email, devLink){
+    state.pendingEmail = email;
+    $("authPanel").hidden = true;
+    $("pending").hidden = false;
+    $("pendingEmail").textContent = email;
+    $("pendingErr").textContent = "";
+    $("pendingOk").textContent = "";
+    $("devLink").innerHTML = devLink
+      ? 'No mail provider configured, so here is the link: <a href="' + devLink + '">' + devLink + "</a>"
+      : "";
+  }
+  function showAuth(){
+    $("pending").hidden = true;
+    $("authPanel").hidden = false;
+  }
+  $("backToAuth").addEventListener("click", function(){ showAuth(); setMode("signin"); });
+
+  function resend(target){
+    var email = state.pendingEmail || $("email").value;
+    if (!email) return;
+    post("/api/resend", { email: email }).then(function(data){
+      if (data && data.devLink) {
+        showPending(email, data.devLink);
+      } else {
+        target.textContent = "Sent. Check your inbox.";
+      }
+    }).catch(function(err){
+      ($("pending").hidden ? $("authErr") : $("pendingErr")).textContent = err.message;
+    });
+  }
+  $("resend").addEventListener("click", function(){ resend($("pendingOk")); });
+  $("resendInline").addEventListener("click", function(){ resend($("authOk")); });
+
   $("authForm").addEventListener("submit", function(e){
     e.preventDefault();
     var btn = $("authGo");
+    var email = $("email").value.trim();
     btn.disabled = true;
     $("authErr").textContent = "";
+    $("authOk").textContent = "";
+    $("unconfirmed").hidden = true;
     post(state.mode === "signup" ? "/api/signup" : "/api/signin", {
-      email: $("email").value,
+      email: email,
       password: $("password").value,
       invite: $("invite").value
-    }).then(function(){
+    }).then(function(data){
       $("password").value = "";
+      if (data && data.pending) {
+        showPending(data.email || email, data.devLink);
+        return;
+      }
       return start();
     }).catch(function(err){
       $("authErr").textContent = err.message;
+      // An unconfirmed account is the one error with an obvious next step.
+      if (/confirm your email/i.test(err.message)) {
+        state.pendingEmail = email;
+        $("unconfirmed").hidden = false;
+      }
     }).finally(function(){
       btn.disabled = false;
     });
@@ -472,6 +547,7 @@ footer{border-top:1px solid var(--hair);padding-block:34px}
     $("gate").hidden = false;
     $("app").hidden = true;
     $("signout").hidden = true;
+    showAuth();
     setMode("signin");
   }
 
@@ -487,8 +563,23 @@ footer{border-top:1px solid var(--hair);padding-block:34px}
     }).catch(function(){ paint(); });
   }
 
+  var params = new URLSearchParams(window.location.search);
+  var confirmState = params.get("confirm");
+  if (confirmState) {
+    // Drop the query string so a refresh does not re-run the confirmation path.
+    window.history.replaceState({}, "", window.location.pathname);
+  }
+
   api("/api/session").then(function(data){
-    if (data && data.email) start(); else showGate();
+    if (data && data.email) {
+      start();
+    } else {
+      showGate();
+      if (confirmState === "invalid") {
+        $("authErr").textContent =
+          "That confirmation link is expired or already used. Sign in, or send a new link.";
+      }
+    }
   }).catch(function(){ showGate(); });
 
   /* ---------------- composer controls ---------------- */

@@ -73,15 +73,24 @@ function secret() {
 
 const b64url = (buf) => Buffer.from(buf).toString("base64url");
 
-export function makeToken(email) {
+/** Token purposes. Carried inside the signature so a confirmation link can
+ *  never be replayed as a session cookie, or the other way round. */
+export const SESSION = "s";
+export const CONFIRM = "c";
+
+const CONFIRM_HOURS = 24;
+
+export function makeToken(email, purpose = SESSION) {
+  const ttl =
+    purpose === CONFIRM ? CONFIRM_HOURS * 36e5 : SESSION_DAYS * 864e5;
   const payload = b64url(
-    JSON.stringify({ e: email, x: Date.now() + SESSION_DAYS * 864e5 }),
+    JSON.stringify({ e: email, p: purpose, x: Date.now() + ttl }),
   );
   const sig = createHmac("sha256", secret()).update(payload).digest("base64url");
   return payload + "." + sig;
 }
 
-export function readToken(token) {
+export function readToken(token, purpose = SESSION) {
   const parts = String(token || "").split(".");
   if (parts.length !== 2) return null;
   const expected = createHmac("sha256", secret())
@@ -99,6 +108,7 @@ export function readToken(token) {
   if (!payload || typeof payload.e !== "string" || !(payload.x > Date.now())) {
     return null;
   }
+  if (payload.p !== purpose) return null;
   return payload.e;
 }
 
@@ -122,7 +132,7 @@ function readCookie(req, name) {
 
 /** The signed-in email, or null. */
 export function currentEmail(req) {
-  return readToken(readCookie(req, COOKIE));
+  return readToken(readCookie(req, COOKIE), SESSION);
 }
 
 /* ---------------- responses ---------------- */
