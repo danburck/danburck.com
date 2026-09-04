@@ -10,3 +10,9 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify/
+
+# Node / Netlify functions
+node_modules/
+.env
+.env.*
+deno.lock

@@ -1,0 +1,10 @@
+{
+  "name": "danburck-com",
+  "private": true,
+  "type": "module",
+  "description": "danburck.com static site plus the Evening Close functions",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.123.0",
+    "@netlify/blobs": "^11.0.3"
+  }
+}
