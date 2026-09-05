@@ -32,6 +32,39 @@
   to = "/booking"
   status = 301
 
+# publish = "." means the repo root is the static root, so the function source
+# and the manifests would otherwise be downloadable. The coaching frame and the
+# mentor lenses live in netlify/lib and must not be.
+[[redirects]]
+  from = "/netlify/*"
+  to = "/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/tools/*"
+  to = "/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package.json"
+  to = "/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package-lock.json"
+  to = "/"
+  status = 404
+  force = true
+
 # Build settings
 [build]
   publish = "."
+  # The Evening Close functions sit behind /api/*, routed by each function's
+  # own `config.path` export rather than by redirects.
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
